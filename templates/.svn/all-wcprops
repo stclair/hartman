@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svnroot/hartman/!svn/ver/1/templates
+END
+admin_main.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/hartman/!svn/ver/1/templates/admin_main.html
+END
+delete_page.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/hartman/!svn/ver/1/templates/delete_page.html
+END
+form_page.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/hartman/!svn/ver/1/templates/form_page.html
+END
+auction.html
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/hartman/!svn/ver/4/templates/auction.html
+END
+main.html
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/hartman/!svn/ver/1/templates/main.html
+END
+image_form.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/hartman/!svn/ver/1/templates/image_form.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/hartman/!svn/ver/1/templates/index.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/hartman/!svn/ver/4/templates/base.html
+END

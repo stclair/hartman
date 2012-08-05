@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Hartman Auctioneering</title>
+        <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    </head>
+    <body>
+        <div class="main">
+            <h1>Admin</h1>           
+            {% for auction in auctions %}
+                <p>
+                <a href="/admin/auction/edit/{{ auction.key.id }}">{{ auction.title }}</a><br />
+                {{ auction.auction_date|date:"l, M d Y, g:i a" }}
+                {{ auction.address }}<br />
+                <a href="/admin/auction/delete/{{ auction.key.id }}">Delete this auction</a><br />
+                <strong>Sections:</strong><br />
+                {% for section in auction.sections %}
+                    <a href="/admin/section/edit/{{ section.key }}">{{ section.title }}</a> <a href="/admin/section/delete/{{ section.key }}">(delete)</a><br />
+                {% endfor %}
+                <strong>Images:</strong><br />
+                {% for image in auction.images %}
+                    <a href="/admin/image/edit/{{ image.key }}"><img src="/thumb/{{ image.key }}" alt="image" />{{ image.caption }}</a> <a href="/admin/image/delete/{{ image.key }}">(delete)</a><br />
+                {% endfor %}
+                </p>
+            {% endfor %}
+            <a href="/admin/auction/add">Add a new auction</a><br />
+            <a href="/admin/section/add">Add a section to an auction</a><br />
+            <a href="/admin/image/add">Add an image to an auction</a><br />            
+        </div>
+    </body>
+</html>

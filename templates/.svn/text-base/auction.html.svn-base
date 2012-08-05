@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block jqueryready %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.slideshow').cycle({
+            fx: 'fade',
+            timeout: 0
+        });
+        $('#imageviewer').hide();
+    });
+
+    function showimage(key) {
+        $('#bigimage').attr('src','');        
+        $('#bigimage').attr('src','/image/'+key);
+        $('#imageviewer').css("top", ( $(window).height() - $('#imageviewer').height() ) / 2+$(window).scrollTop() + "px");
+        $('#imageviewer').css("left", ( $(window).width() - $('#imageviewer').width() ) / 2+$(window).scrollLeft() + "px");
+        $('#imageviewer').fadeIn('slow');        
+        //$('.slideshow').fadeOut('slow');
+    }
+
+    function hideimage() {
+        $('#imageviewer').fadeOut('slow');
+        //$('.slideshow').fadeIn('slow');
+    }
+
+    function next() {
+        $('.slideshow').cycle('next')
+    }
+
+    function prev() {
+        $('.slideshow').cycle('prev')        
+    }
+</script>    
+{% endblock %}
+{% block content %}
+<td colspan="2">
+    <h2>{{ auction.title }}</h2>
+    {% if auction.owner %}
+        <div class="section_head">{{ auction.owner }}</div>
+    {% endif %}
+    <br />
+    <div class="section_head">{{ auction.auction_date|date:"l, M d, Y - g:i a" }}</div>
+    {% if auction.auction_rain_date %}
+        <div class="section_detail">Rain date {{ auction.auction_rain_date|date:"l, M d, Y - g:i a" }}</div>
+    {% endif %}
+    <br />
+    <div class="section_head">{{ auction.address }}</div>
+    {% if auction.driving_directions %}
+        <div class="section_detail">{{ auction.driving_directions }}</div>
+    {% endif %}
+    <br />
+    {% if auction.preface %}
+        <div class="section_detail">{{ auction.preface }}</div><br />        
+    {% endif %}
+
+    {% for section in auction.sections %}
+        {% if section.auction_split_wording %}
+            <hr />
+            <div class="section_split">{{ section.auction_split_wording }}</div>            
+        {% else %}
+            <div class="section_head">{{ section.title }}:</div>
+            <div class="section_detail">{{ section.items }}</div><br />
+        {% endif %}
+    {% endfor %}
+
+    {% if auction.postscript %}
+        <div class="section_detail">{{ auction.postscript }}</div>        
+    {% endif %}
+</td>
+<td style="width: 5%">
+    <!--<div id="map_canvas" style="width: 200px; height: 200px"></div>-->
+    {% if auction.images.0 %}
+        <a href="javascript:prev();" class="imagecontrol" style="float:left">&lt;previous</a>
+        <a href="javascript:next();" class="imagecontrol" style="float:right">next&gt;</a>
+        <div class="slideshow">
+            {% for image in auction.images %}
+            <div>
+                <a href="javascript:showimage('{{ image.key }}');"><img src="/thumb/{{ image.key }}" /></a><br />
+                {{ image.caption }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</td>
+{% endblock %}
+{% block endofpage %}
+<div id="imageviewer" onclick="hideimage()">
+    <a href="javascript:hideimage()">
+        Click to close<br />
+        <img id="bigimage" src="" alt="" />
+    </a>
+</div>
+
+<!--<script type="text/javascript">-->
+  <!--var mapDiv = document.getElementById('map_canvas');-->
+  <!--var map = new google.maps.Map(mapDiv, {-->
+    <!--center: new google.maps.LatLng(37.4419, -122.1419),-->
+    <!--zoom: 13,-->
+    <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+  <!--});-->
+<!--</script>    -->
+{% endblock %}

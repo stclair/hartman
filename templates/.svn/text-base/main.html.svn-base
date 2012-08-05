@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<td>
+    <h2>Auction Services</h2>
+    <ul>
+        <li>Estates</li>
+        <li>Household</li>
+        <li>Real Estate</li>
+        <li>Farms &amp; Commercial</li>
+        <li>Pick up and delivery</li>
+    </ul>
+    <h2>Contact Us</h2>
+    <p class="contact">
+        <strong>Steve Hartman</strong><br />
+        504 W. Jefferson<br />
+        Winterset, IA 50273<br />
+        (515) 462-4584<br />
+    </p>
+
+</td>
+<td>
+    <h2>About Us</h2>
+    <p><strong>Hartman Auctioneering began in 1993.</strong></p>
+    <p>Steve went to auction school in Mason City, Iowa in 1990.</p>
+    <p>We offer full auction services with pick up and delivery available.</p>
+    <p>Hartman Auctioneering is knowledgeable in all fields, thanks to our diverse crew, whether it is Antiques, Real Estate, Household, Estate, Farm or Commercial Auctions.</p>
+    <p>Foursquare Church always serves good food at our auctions, with proceeds from kitchen sales going to the community.</p>
+    <p>All these services are brought to you in a good light-hearted environment.</p>
+</td>
+<td>
+    <h2>Upcoming Auctions</h2>
+    {% for auction in auctions %}
+        <p>
+        <a href="auction/{{ auction.auction_date|date:"m_d_Y_H_i" }}">{{ auction.title }}</a><br />
+        {{ auction.auction_date|date:"l, M d Y, g:i a" }}<br />
+        {{ auction.address }}<br />
+        </p>
+    {% endfor %}
+</td>
+{% endblock %}
